@@ -6,12 +6,12 @@
  * that can be found at http://neekware.com/license/PRI.html
  */
 
+import { readFileSync, writeFileSync } from "fs";
+import * as replaceSection from "markdown-replace-section";
+
+import { execute } from "./util";
+
 const { program } = require('commander');
-import { readFileSync, writeFileSync } from 'fs';
-import * as replaceSection from 'markdown-replace-section';
-
-import { execute } from './util';
-
 const DEBUG = false;
 const excludeDirs = [
   'node_modules',

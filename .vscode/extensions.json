@@ -1,8 +1,19 @@
 {
   "recommendations": [
     "nrwl.angular-console",
-    "esbenp.prettier-vscode",
+    "angular.ng-template",
+    "streetsidesoftware.code-spell-checker",
+    "ms-azuretools.vscode-docker",
+    "mikestead.dotenv",
+    "dbaeumer.vscode-eslint",
+    "github.copilot",
+    "graphql.vscode-graphql",
     "firsttris.vscode-jest-runner",
-    "dbaeumer.vscode-eslint"
+    "esbenp.prettier-vscode",
+    "prisma.prisma",
+    "ms-python.python",
+    "bradlc.vscode-tailwindcss",
+    "mike-co.import-sorter",
+    "matt-meyers.vscode-dbml"
   ]
 }

@@ -6,23 +6,23 @@
  * that can be found at http://neekware.com/license/PRI.html
  */
 
-import * as childProcess from 'child_process';
-import * as fs from 'fs';
-import * as path from 'path';
-
-import * as glob from 'glob';
+import { exec } from "child_process";
+import { existsSync } from "fs";
+import { glob } from "glob";
+import { join, resolve } from "path";
 
 require('dotenv').config();
 
 export const projName = 'FullestStack';
-export const projDir = path.resolve(__dirname, '../..');
-export const coverageDir = path.resolve(path.join(projDir, 'coverage'));
-export const libDir = path.resolve(path.join(projDir, 'libs'));
-export const appsDir = path.resolve(path.join(projDir, 'apps'));
-export const distDir = path.resolve(path.join(projDir, 'dist'));
-export const projPkgJson = require(path.join(projDir, 'package.json'));
+export const projDir = resolve(__dirname, '../..');
+export const coverageDir = resolve(join(projDir, 'coverage'));
+export const libDir = resolve(join(projDir, 'libs'));
+export const appsDir = resolve(join(projDir, 'apps'));
+export const distDir = resolve(join(projDir, 'dist'));
+export const projPkgJson = require(join(projDir, 'package.json'));
 
-export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export const sleep = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Runs a command, capture and return the output
@@ -30,7 +30,7 @@ export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve
  */
 export function execute(script: string, debug = false): Promise<any> {
   return new Promise((resolvePromise, rejectPromise) => {
-    childProcess.exec(script, { maxBuffer: 1024 * 1000 }, (error, stdout, stderr) => {
+    exec(script, { maxBuffer: 1024 * 1000 }, (error, stdout, stderr) => {
       if (error) {
         console.error(error);
         rejectPromise(stderr);
@@ -47,7 +47,7 @@ export function execute(script: string, debug = false): Promise<any> {
  */
 export function fileExists(filePath: string): boolean {
   try {
-    return fs.existsSync(filePath);
+    return existsSync(filePath);
   } catch (err) {
     return false;
   }
