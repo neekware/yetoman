@@ -7,7 +7,7 @@
  */
 
 import { readFileSync, writeFileSync } from "fs";
-import * as replaceSection from "markdown-replace-section";
+import replaceSection from "markdown-replace-section";
 
 import { execute } from "./util";
 
