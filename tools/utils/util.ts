@@ -57,7 +57,7 @@ export function fileExists(filePath: string): boolean {
  * Returns a list of file name
  * @param globPattern pattern for globs
  */
-export function getGlobFiles(globPattern): Promise<string[]> {
+export function getGlobFiles(globPattern: string): Promise<string[]> {
   // /**/error.log, /**/results.txt, ...etc
   return new Promise((resolve, reject) => {
     glob(globPattern, (error, result) => {
