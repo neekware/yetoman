@@ -1,6 +1,7 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+import "./styles.css";
+
+import { AppProps } from "next/app";
+import Head from "next/head";
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -8,7 +9,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Welcome to yetoman!</title>
       </Head>
-      <main className="app">
+      <main className="flex-col justify-center px-4">
         <Component {...pageProps} />
       </main>
     </>

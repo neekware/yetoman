@@ -10,7 +10,8 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/yetoman",
-        "outputPath": "dist/apps/yetoman"
+        "outputPath": "dist/apps/yetoman",
+        "postcssConfig": "apps/yetoman/postcss.config.js"
       },
       "configurations": {
         "development": {
