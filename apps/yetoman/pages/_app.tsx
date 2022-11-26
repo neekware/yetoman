@@ -9,7 +9,7 @@ function CustomApp({ Component, pageProps }: AppProps) {
       <Head>
         <title>Welcome to YEToMAN!</title>
       </Head>
-      <main className="flex-col items-center px-4 dark:text-white ">
+      <main className="flex-col items-center px-4">
         <Component {...pageProps} />
       </main>
     </>
