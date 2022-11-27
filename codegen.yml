@@ -1,0 +1,8 @@
+schema: http://localhost:3000/api/gql
+documents: './apps/**/*.gql'
+generates:
+  ./apps/yetoman/schema/generated/schema.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request

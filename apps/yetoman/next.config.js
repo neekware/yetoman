@@ -12,6 +12,14 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
+  reactStrictMode: true,
+  webpack: (config) => {
+    if (!config.experiments) {
+      config.experiments = {};
+    }
+    config.experiments.topLevelAwait = true;
+    return config;
+  },
 };
 
 module.exports = withNx(nextConfig);
