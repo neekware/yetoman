@@ -1,7 +1,7 @@
 schema: http://localhost:3000/api/gql
 documents: './apps/**/*.gql'
 generates:
-  ./apps/yetoman/schema/generated/schema.ts:
+  ./apps/yetoman/schema/schema.gql.ts:
     plugins:
       - typescript
       - typescript-operations
