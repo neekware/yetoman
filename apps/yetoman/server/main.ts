@@ -25,6 +25,8 @@ async function main() {
   // next handle to process non-api requests
   const nextHandler = nextApp.getRequestHandler();
 
+  await nextApp.prepare();
+
   // http server to handle request through express app
   const httpServer = createServer(expressApp);
 
