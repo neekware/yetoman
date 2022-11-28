@@ -49,9 +49,12 @@ async function main() {
   );
 
   expressApp.use((req, res, next) => {
-    console.log('Time:', Date.now());
     const parsedUrl = url.parse(req.url, true);
-    nextHandler(req, res, parsedUrl);
+    const ignorePaths = [environment.gqlEndpoint, ...environment.rootAssets];
+    if (!ignorePaths.includes(parsedUrl.path)) {
+      console.log(parsedUrl);
+      nextHandler(req, res, parsedUrl);
+    }
     next();
   });
 

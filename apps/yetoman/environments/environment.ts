@@ -6,6 +6,7 @@ const buildDir = process.env.NX_NEXT_DIR || pathJoin(__dirname, '..');
 const production = process.env.NODE_ENV === 'development';
 const hostname = process.env.HOST || 'localhost';
 const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
+const rootAssets = ['/favicon.ico'];
 
 export const environment = {
   siteName: 'yeToman',
@@ -18,4 +19,5 @@ export const environment = {
   port,
   gqlEndpoint: '/api/gql',
   gqlPayloadLimit: '50mb',
+  rootAssets,
 } as const;
