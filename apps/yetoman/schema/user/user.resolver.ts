@@ -1,6 +1,6 @@
 import { Arg, Query, Resolver } from "type-graphql";
 
-import { User } from "../user";
+import { User } from "./user.model";
 
 const users = [{ name: 'Val' }, { name: 'Tome' }];
 @Resolver(User)
