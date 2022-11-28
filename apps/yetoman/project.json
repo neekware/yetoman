@@ -18,23 +18,28 @@
           "outputPath": "apps/yetoman"
         },
         "production": {}
-      }
+      },
+      "dependsOn": ["build-custom-server"]
     },
     "serve": {
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "yetoman:build",
-        "dev": true
+        "dev": true,
+        "port": 3000,
+        "customServerTarget": "yetoman:serve-custom-server"
       },
       "configurations": {
         "development": {
           "buildTarget": "yetoman:build:development",
-          "dev": true
+          "dev": true,
+          "customServerTarget": "yetoman:serve-custom-server:development"
         },
         "production": {
           "buildTarget": "yetoman:build:production",
-          "dev": false
+          "dev": false,
+          "customServerTarget": "yetoman:serve-custom-server:production"
         }
       }
     },
@@ -57,6 +62,36 @@
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/yetoman/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "build-custom-server": {
+      "executor": "@nrwl/js:tsc",
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/yetoman",
+        "main": "apps/yetoman/server/main.ts",
+        "tsConfig": "apps/yetoman/tsconfig.server.json",
+        "clean": false,
+        "assets": []
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve-custom-server": {
+      "executor": "@nrwl/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "yetoman:build-custom-server"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "yetoman:build-custom-server:development"
+        },
+        "production": {
+          "buildTarget": "yetoman:build-custom-server:production"
+        }
       }
     }
   },

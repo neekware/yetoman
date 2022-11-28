@@ -23,10 +23,11 @@
     "statusBar.border": "#b85833"
   },
   "search.exclude": {
-    "**/dist": true,
-    "**/node_modules": true,
+    "**/*.lock": true,
     "**/coverage": true,
-    "**/graph": true
+    "**/dist": true,
+    "**/graph": true,
+    "**/node_modules": true
   },
   "cSpell.words": [
     "Acerca",
@@ -43,6 +44,8 @@
     "bluegrey",
     "Buffay",
     "Buildable",
+    "buildcache",
+    "cacheable",
     "cachify",
     "codegen",
     "coverallsapp",
