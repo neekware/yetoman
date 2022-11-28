@@ -27,7 +27,6 @@
       "options": {
         "buildTarget": "yetoman:build",
         "dev": true,
-        "port": 3000,
         "customServerTarget": "yetoman:serve-custom-server"
       },
       "configurations": {
