@@ -3,7 +3,7 @@ import "reflect-metadata";
 import { ApolloServer } from "apollo-server-micro";
 import { buildSchema } from "type-graphql";
 
-import { UsersResolver } from "../../schema/user.resolver";
+import { UsersResolver } from "../../schema/user/user.resolver";
 
 const schema = await buildSchema({
   resolvers: [UsersResolver],
