@@ -31,14 +31,14 @@ export type User = {
   name: Scalars['ID'];
 };
 
-export type GetUsersQueryVariables = Exact<{ [key: string]: never; }>;
+export type UsersQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', name: string }> };
+export type UsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', name: string }> };
 
 
-export const GetUsersDocument = gql`
-    query getUsers {
+export const UsersDocument = gql`
+    query Users {
   users {
     name
   }
@@ -52,8 +52,8 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getUsers(variables?: GetUsersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUsersQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<GetUsersQuery>(GetUsersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUsers', 'query');
+    Users(variables?: UsersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UsersQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<UsersQuery>(UsersDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'Users', 'query');
     }
   };
 }
