@@ -21,3 +21,4 @@ export const environment = {
   gqlPayloadLimit: '50mb',
   rootAssets,
 } as const;
+console.log(environment);

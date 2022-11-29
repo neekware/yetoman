@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "<----- Basic Defaults ----->": "",
-    "serve:dev": "ts-node ./apps/yetoman/server/main.ts",
-    "serve:prod": "NODE_ENV=production ts-node ./apps/yetoman/server/main.ts",
+    "start:prod": "NODE_ENV=production node ./dist/apps/yetoman/server/main.js",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
