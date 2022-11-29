@@ -56,14 +56,10 @@ async function main() {
     if (ignorePaths.includes(parsedUrl.path)) {
       console.log(parsedUrl);
       nextHandler(req, res, parsedUrl);
+    } else {
+      next();
     }
-    next();
   });
-
-  // const server = createServer((req, res) => {
-  //   const parsedUrl = parse(req.url, true);
-  //   handle(req, res, parsedUrl);
-  // });
 
   httpServer.listen(environment.port, environment.hostname);
 
