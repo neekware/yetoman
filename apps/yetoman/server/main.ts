@@ -53,7 +53,7 @@ async function main() {
   expressApp.use((req, res, next) => {
     const parsedUrl = url.parse(req.url, true);
     const ignorePaths = [environment.gqlEndpoint, ...environment.rootAssets];
-    if (ignorePaths.includes(parsedUrl.path)) {
+    if (!ignorePaths.includes(parsedUrl.path)) {
       console.log(parsedUrl);
       nextHandler(req, res, parsedUrl);
     } else {
