@@ -1,4 +1,4 @@
-import { i18nExtractor as _ } from './dto.util';
+import { i18nExtractor as _ } from "./fs-dto.util";
 
 export interface HealthCheck {
   ping: boolean;
