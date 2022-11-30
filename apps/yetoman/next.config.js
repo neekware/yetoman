@@ -4,7 +4,17 @@ const path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { withNx } = require('@nrwl/next/plugins/with-nx');
 
+// supported loaders
 const supportedLoaders = ['next-babel-loader', 'next-swc-loader'];
+
+// paths outside next we want to include and watch
+const externalPaths = [path.join(__dirname, '../..', 'libs')];
+
+/**
+ * Checks if module rule has supported loader
+ * @param rule module rule
+ * @returns true if rule has a supported loader
+ */
 const hasNextSupportedLoader = (rule) => {
   if (Array.isArray(rule.use)) {
     return rule.use.find((l) => supportedLoaders.includes(l?.loader));
@@ -13,12 +23,16 @@ const hasNextSupportedLoader = (rule) => {
   return supportedLoaders.includes(rule.use?.loader);
 };
 
-const appendExternalPaths = (rule, paths) => {
+/**
+ * Includes external module if they have supported loader
+ * @param rule module rule
+ */
+const appendExternalPaths = (rule) => {
   const pattern = String(rule.test);
 
   if ((pattern && pattern.includes('tsx|ts')) || pattern.includes('ts|tsx')) {
     if (hasNextSupportedLoader(rule)) {
-      rule.include = [...(rule?.include || []), ...paths];
+      rule.include = [...(rule?.include || []), ...externalPaths];
     }
   }
 };
@@ -34,14 +48,13 @@ const nextConfig = {
   },
   reactStrictMode: true,
   webpack: (config) => {
-    const libsPaths = [path.join(__dirname, '../..', 'libs')];
     config.module.rules.forEach((rule) => {
       if (rule.test) {
-        appendExternalPaths(rule, libsPaths);
+        appendExternalPaths(rule);
       } else if (rule.oneOf) {
         rule.oneOf.forEach((rule) => {
           if (rule.test) {
-            appendExternalPaths(rule, libsPaths);
+            appendExternalPaths(rule);
           }
         });
       }
