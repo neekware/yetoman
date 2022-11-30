@@ -26,9 +26,8 @@ Table User {
   lastName String [not null, default: '']
   language String [not null, default: 'en']
   role Role [not null, default: 'USER']
-  permissions Permission[] [not null]
-  groupId String
   groups Group [not null]
+  permissions Permission[] [not null]
 }
 
 Table ContactMessage {
