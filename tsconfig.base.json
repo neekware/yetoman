@@ -16,8 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@yetoman/fs-dto": ["libs/fs-dto/src/index.ts"],
-      "@yetoman/fs-auth": ["libs/fs-auth/src/index.ts"]
+      "@yetoman/fs-auth": ["libs/fs-auth/src/index.ts"],
+      "@yetoman/fs-common": ["libs/fs-common/src/index.ts"],
+      "@yetoman/fs-dto": ["libs/fs-dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
