@@ -1,4 +1,4 @@
-import { dto } from "@mono/dto";
+import { HttpStatusCode } from '@mono/dto';
 
 export function Index() {
   /*
@@ -8,7 +8,7 @@ export function Index() {
    */
   return (
     <div>
-      <h1>Hello there! {dto()}</h1>
+      <h1>Hello there! {HttpStatusCode.OK}</h1>
       <div>Hey YEToMAN! 👋</div>
     </div>
   );
