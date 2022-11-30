@@ -1,3 +1,5 @@
+import { dto } from "@mono/dto";
+
 export function Index() {
   /*
    * Replace the elements below with your own.
@@ -6,7 +8,7 @@ export function Index() {
    */
   return (
     <div>
-      <h1>Hello there!</h1>
+      <h1>Hello there! {dto()}</h1>
       <div>Hey YEToMAN! 👋</div>
     </div>
   );

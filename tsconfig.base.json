@@ -15,7 +15,9 @@
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@mono/dto": ["libs/dto/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
