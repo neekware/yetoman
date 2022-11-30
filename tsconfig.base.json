@@ -16,7 +16,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mono/dto": ["libs/dto/src/index.ts"]
+      "@yetoman/fs-dto": ["libs/fs-dto/src/index.ts"],
+      "@yetoman/fs-auth": ["libs/fs-auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

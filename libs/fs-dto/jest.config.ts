@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-  displayName: 'dto',
+  displayName: 'fs-dto',
   preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -11,5 +11,5 @@ export default {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../coverage/libs/dto',
+  coverageDirectory: '../../coverage/libs/fs-dto',
 };

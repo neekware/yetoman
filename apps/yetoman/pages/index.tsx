@@ -1,4 +1,4 @@
-import { HttpStatusCode } from '@mono/dto';
+import { HttpStatusCode } from "@mono/fs-dto";
 
 export function Index() {
   /*
