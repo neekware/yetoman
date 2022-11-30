@@ -35,7 +35,6 @@ enum Permission {
   contactMessageUPDATE
   contactMessageDELETE
   contactMessageALL
-
 }
 
 model Group {
@@ -52,29 +51,28 @@ model User {
   createdAt      DateTime     @default(now())
   updatedAt      DateTime     @updatedAt
   lastLoginAt    DateTime
-  email          String       @unique
-  username       String       @unique
+  email          String       @unique @db.VarChar(255)
+  username       String       @unique @db.VarChar(255)
   password       String       @default(cuid())
   sessionVersion Int          @default(1)
   isVerified     Boolean      @default(false)
   isActive       Boolean      @default(false)
-  firstName      String       @default("")
-  lastName       String       @default("")
-  language       String       @default("en")
+  firstName      String       @default("") @db.VarChar(255)
+  lastName       String       @default("") @db.VarChar(255)
+  language       String       @default("en") @db.VarChar(255)
   role           Role         @default(USER)
-  permissions    Permission[]
-  groupId        String?
   groups         Group[]
+  permissions    Permission[]
 }
 
 model ContactMessage {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  email       String
-  subject     String
+  email       String   @db.VarChar(255)
+  subject     String   @db.VarChar(255)
   content     String
-  countryCode String
-  ipAddress   String
+  countryCode String   @db.VarChar(10)
+  ipAddress   String   @db.VarChar(100)
   language    String   @default("en")
 }
