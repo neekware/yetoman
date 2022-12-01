@@ -11,6 +11,11 @@ generator dbml {
   provider = "prisma-dbml-generator"
 }
 
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../../../node_modules/@prisma/gql"
+}
+
 enum Role {
   USER
   STAFF
