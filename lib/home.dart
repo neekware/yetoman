@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yetoman/state/store.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage();
+import 'model/state.dart';
+
+class HomePage extends ConsumerWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  void handleMenu(BuildContext context, LayoutState state) {
+    state.menuOpen
+        ? Scaffold.of(context).openDrawer()
+        : Scaffold.of(context).closeDrawer();
+    state.notifyOpen
+        ? Scaffold.of(context).openEndDrawer()
+        : Scaffold.of(context).closeEndDrawer();
+  }
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    LayoutState layout = ref.watch(layoutStateProvider);
 
-class _HomePageState extends State<HomePage> {
-  bool _isDrawerOpen = false;
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("2 Drawers"),
         leading: Builder(
           builder: (context) {
             return IconButton(
-              icon: Icon(_isDrawerOpen ? Icons.close : Icons.menu),
+              icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
               onPressed: () {
-                Scaffold.of(context).openDrawer();
-                setState(() {
-                  _isDrawerOpen = !_isDrawerOpen;
-                });
+                handleMenu(context,
+                    ref.read(layoutStateProvider.notifier).toggleMenu());
               },
             );
           },
@@ -34,13 +40,18 @@ class _HomePageState extends State<HomePage> {
               return IconButton(
                 icon: const Icon(Icons.person),
                 onPressed: () {
-                  Scaffold.of(context).openEndDrawer();
+                  handleMenu(context,
+                      ref.read(layoutStateProvider.notifier).toggleNotify());
                 },
               );
             },
           )
         ],
       ),
+      onDrawerChanged: (isOpened) =>
+          ref.read(layoutStateProvider.notifier).setMenu(isOpened),
+      onEndDrawerChanged: (isOpened) =>
+          ref.read(layoutStateProvider.notifier).setNotify(isOpened),
       drawer: Theme(
         data: Theme.of(context).copyWith(
           // Set the transparency here
