@@ -58,8 +58,8 @@ class HomePage extends ConsumerWidget {
           canvasColor: Colors.transparent,
         ),
         child: Container(
-          width: 300,
-          color: Colors.white,
+          width: 320,
+          color: Colors.blue[100],
           margin: EdgeInsets.only(top: AppBar().preferredSize.height),
           child: const Center(
             child: Text(
@@ -69,13 +69,19 @@ class HomePage extends ConsumerWidget {
           ),
         ),
       ),
-      endDrawer: Drawer(
+      endDrawer: Theme(
+        data: Theme.of(context).copyWith(
+          // Set the transparency here
+          canvasColor: Colors.transparent,
+        ),
         child: Container(
-          color: Colors.deepPurple,
+          width: 320,
+          color: Colors.green[100],
+          margin: EdgeInsets.only(top: AppBar().preferredSize.height),
           child: const Center(
             child: Text(
-              "Profile",
-              style: TextStyle(color: Colors.white, fontSize: 30),
+              "Notifications",
+              style: TextStyle(color: Colors.green, fontSize: 30),
             ),
           ),
         ),
