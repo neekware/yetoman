@@ -20,7 +20,13 @@ class HomePage extends ConsumerWidget {
               ),
               onTap: () {
                 // name route
-                Navigator.pushNamed(context, AboutPage.namedRoute);
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                    pageBuilder: (_, __, ___) => const AboutPage(),
+                    transitionDuration: const Duration(seconds: 0),
+                  ),
+                );
               })),
     );
   }
