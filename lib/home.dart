@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yetoman/platform/query.dart';
 import 'package:yetoman/state/store.dart';
 
 import 'model/state.dart';
@@ -22,14 +23,34 @@ class HomePage extends ConsumerWidget {
 
     return Scaffold(
       body: GestureDetector(
-        child: Container(
-          color: Colors.white,
-          child: const Center(
-            child: Text(
-              "Home",
-              style: TextStyle(color: Colors.black, fontSize: 30),
+        child: Row(
+          children: [
+            isDesktopSize(context)
+                ? Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.blueAccent)),
+                    width: 320,
+                    child: const Center(
+                      child: Text(
+                        "Menu",
+                        style: TextStyle(color: Colors.black, fontSize: 30),
+                      ),
+                    ),
+                  )
+                : Container(),
+            Expanded(
+              child: Container(
+                color: Colors.grey[100],
+                child: const Center(
+                  child: Text(
+                    "Content",
+                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  ),
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
       appBar: AppBar(
