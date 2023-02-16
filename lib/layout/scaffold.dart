@@ -7,13 +7,14 @@ import 'body.dart';
 import 'header.dart';
 
 class LayoutScaffold extends ConsumerWidget {
-  const LayoutScaffold({super.key});
+  final Widget child;
+  const LayoutScaffold({super.key, required this.child});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: LayoutHeader(title: appName, appBar: AppBar()),
-      body: const LayoutBody(),
+      body: LayoutBody(child: child),
       drawer: Container(
         width: 320,
         color: Colors.blue[100],

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../platform/query.dart';
 
 class LayoutBody extends StatelessWidget {
-  const LayoutBody({super.key});
+  final Widget child;
+  const LayoutBody({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +26,7 @@ class LayoutBody extends StatelessWidget {
                 )
               : Container(),
           Expanded(
-            child: Container(
-              color: Colors.grey[100],
-              child: const Center(
-                child: Text(
-                  "Content",
-                  style: TextStyle(color: Colors.black, fontSize: 30),
-                ),
-              ),
-            ),
+            child: Container(color: Colors.grey[100], child: child),
           ),
         ],
       ),
