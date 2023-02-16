@@ -21,6 +21,17 @@ class HomePage extends ConsumerWidget {
     LayoutState layout = ref.watch(layoutStateProvider);
 
     return Scaffold(
+      body: GestureDetector(
+        child: Container(
+          color: Colors.white,
+          child: const Center(
+            child: Text(
+              "Home",
+              style: TextStyle(color: Colors.black, fontSize: 30),
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         title: const Text("2 Drawers"),
         leading: Builder(
@@ -48,44 +59,34 @@ class HomePage extends ConsumerWidget {
           )
         ],
       ),
-      onDrawerChanged: (isOpened) =>
-          ref.read(layoutStateProvider.notifier).setMenu(isOpened),
-      onEndDrawerChanged: (isOpened) =>
-          ref.read(layoutStateProvider.notifier).setNotify(isOpened),
-      drawer: Theme(
-        data: Theme.of(context).copyWith(
-          // Set the transparency here
-          canvasColor: Colors.transparent,
-        ),
-        child: Container(
-          width: 320,
-          color: Colors.blue[100],
-          margin: EdgeInsets.only(top: AppBar().preferredSize.height),
-          child: const Center(
-            child: Text(
-              "Settings",
-              style: TextStyle(color: Colors.green, fontSize: 30),
-            ),
+      drawer: Container(
+        width: 320,
+        color: Colors.blue[100],
+        margin: EdgeInsets.only(top: AppBar().preferredSize.height),
+        child: const Center(
+          child: Text(
+            "Settings",
+            style: TextStyle(color: Colors.green, fontSize: 30),
           ),
         ),
       ),
-      endDrawer: Theme(
-        data: Theme.of(context).copyWith(
-          // Set the transparency here
-          canvasColor: Colors.transparent,
-        ),
-        child: Container(
-          width: 320,
-          color: Colors.green[100],
-          margin: EdgeInsets.only(top: AppBar().preferredSize.height),
-          child: const Center(
-            child: Text(
-              "Notifications",
-              style: TextStyle(color: Colors.green, fontSize: 30),
-            ),
+      onDrawerChanged: (isOpened) {
+        ref.read(layoutStateProvider.notifier).setMenu(isOpened);
+      },
+      endDrawer: Container(
+        width: 320,
+        color: Colors.green[100],
+        margin: EdgeInsets.only(top: AppBar().preferredSize.height),
+        child: const Center(
+          child: Text(
+            "Notifications",
+            style: TextStyle(color: Colors.green, fontSize: 30),
           ),
         ),
       ),
+      onEndDrawerChanged: (isOpened) {
+        ref.read(layoutStateProvider.notifier).setNotify(isOpened)
+      },
     );
   }
 }
