@@ -12,7 +12,7 @@ class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
   const LayoutHeader({Key? key, required this.title, required this.appBar})
       : super(key: key);
 
-  void handleMenu(BuildContext context, LayoutState state) {
+  void handleDrawer(BuildContext context, LayoutState state) {
     state.menuOpen
         ? Scaffold.of(context).openDrawer()
         : Scaffold.of(context).closeDrawer();
@@ -32,7 +32,7 @@ class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
           return IconButton(
             icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
             onPressed: () {
-              handleMenu(
+              handleDrawer(
                   context, ref.read(layoutStateProvider.notifier).toggleMenu());
             },
           );
@@ -44,7 +44,7 @@ class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
             return IconButton(
               icon: const Icon(Icons.person),
               onPressed: () {
-                handleMenu(context,
+                handleDrawer(context,
                     ref.read(layoutStateProvider.notifier).toggleNotify());
               },
             );
