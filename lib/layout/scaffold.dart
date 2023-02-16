@@ -7,14 +7,19 @@ import 'body.dart';
 import 'header.dart';
 
 class LayoutScaffold extends ConsumerWidget {
-  final Widget child;
-  const LayoutScaffold({super.key, required this.child});
+  Widget _child = Container();
+
+  LayoutScaffold({super.key});
+
+  set child(Widget child) {
+    _child = child;
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: LayoutHeader(title: appName, appBar: AppBar()),
-      body: LayoutBody(child: child),
+      body: LayoutBody(child: _child),
       drawer: Container(
         width: 320,
         color: Colors.blue[100],
@@ -45,4 +50,14 @@ class LayoutScaffold extends ConsumerWidget {
       },
     );
   }
+
+  getInstance() {
+    return this;
+  }
+}
+
+LayoutScaffold scaffold = LayoutScaffold().getInstance();
+LayoutScaffold getScaffold({required Widget child}) {
+  scaffold.child = child;
+  return scaffold;
 }

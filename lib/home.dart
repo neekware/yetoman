@@ -11,7 +11,7 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return LayoutScaffold(
+    return getScaffold(
       child: Center(
           child: GestureDetector(
               child: const Text(
