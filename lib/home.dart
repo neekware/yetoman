@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:yetoman/config/environment.dart';
+import 'package:yetoman/layout/header.dart';
 import 'package:yetoman/platform/query.dart';
-import 'package:yetoman/state/store.dart';
-
-import 'model/state.dart';
+import 'package:yetoman/state/layout_state.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  void handleMenu(BuildContext context, LayoutState state) {
-    state.menuOpen
-        ? Scaffold.of(context).openDrawer()
-        : Scaffold.of(context).closeDrawer();
-    state.notifyOpen
-        ? Scaffold.of(context).openEndDrawer()
-        : Scaffold.of(context).closeEndDrawer();
-  }
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    LayoutState layout = ref.watch(layoutStateProvider);
-
     return Scaffold(
+      appBar: LayoutHeader(title: appName, appBar: AppBar()),
       body: GestureDetector(
         child: Row(
           children: [
@@ -52,33 +42,6 @@ class HomePage extends ConsumerWidget {
             ),
           ],
         ),
-      ),
-      appBar: AppBar(
-        title: const Text("2 Drawers"),
-        leading: Builder(
-          builder: (context) {
-            return IconButton(
-              icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
-              onPressed: () {
-                handleMenu(context,
-                    ref.read(layoutStateProvider.notifier).toggleMenu());
-              },
-            );
-          },
-        ),
-        actions: [
-          Builder(
-            builder: (context) {
-              return IconButton(
-                icon: const Icon(Icons.person),
-                onPressed: () {
-                  handleMenu(context,
-                      ref.read(layoutStateProvider.notifier).toggleNotify());
-                },
-              );
-            },
-          )
-        ],
       ),
       drawer: Container(
         width: 320,

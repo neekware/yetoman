@@ -21,7 +21,7 @@ class LayoutState {
   final SidenavMode notifyMode;
   final String signature;
 
-  LayoutState(
+  const LayoutState(
       {this.appName = '',
       this.isHandset = false,
       this.isPortrait = false,
