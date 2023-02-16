@@ -85,7 +85,7 @@ class HomePage extends ConsumerWidget {
         ),
       ),
       onEndDrawerChanged: (isOpened) {
-        ref.read(layoutStateProvider.notifier).setNotify(isOpened)
+        ref.read(layoutStateProvider.notifier).setNotify(isOpened);
       },
     );
   }
