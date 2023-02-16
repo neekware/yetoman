@@ -3,6 +3,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yetoman/state/layout_state.dart';
 
 import '../model/state.dart';
+import '../util/animation.dart';
 
 class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
   final Color backgroundColor = Colors.red;
@@ -29,27 +30,36 @@ class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
       title: Text(title),
       leading: Builder(
         builder: (context) {
-          return IconButton(
-            icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
-            onPressed: () {
-              handleDrawer(
-                  context, ref.read(layoutStateProvider.notifier).toggleMenu());
-            },
+          return AnimationWidget(
+            degree: layout.notifyOpen ? -90 : 90,
+            child: Icon(
+              layout.notifyOpen ? Icons.close : Icons.menu,
+              color: Colors.white,
+              size: 30.0,
+            ),
           );
+          // return IconButton(
+          //   icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
+          //   onPressed: () {
+          //     handleDrawer(
+          //         context, ref.read(layoutStateProvider.notifier).toggleMenu());
+          //   },
+          // );
         },
       ),
       actions: [
         Builder(
           builder: (context) {
-            return IconButton(
-              icon: const Icon(Icons.person),
-              onPressed: () {
-                handleDrawer(context,
-                    ref.read(layoutStateProvider.notifier).toggleNotify());
-              },
+            return AnimationWidget(
+              degree: layout.notifyOpen ? -90 : 90,
+              child: const Icon(
+                Icons.person,
+                color: Colors.white,
+                size: 30.0,
+              ),
             );
           },
-        )
+        ),
       ],
     );
   }
