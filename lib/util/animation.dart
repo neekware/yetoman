@@ -8,8 +8,10 @@ class AnimationWidget extends StatefulWidget {
   Widget child = Container();
   int degree = 90;
   bool forward = true;
+  VoidCallback? onPressed;
 
-  AnimationWidget({super.key, required this.child, required this.degree});
+  AnimationWidget(
+      {super.key, required this.child, required this.degree, this.onPressed});
 
   @override
   State<AnimationWidget> createState() => _AnimationWidgetState();
@@ -45,10 +47,7 @@ class _AnimationWidgetState extends State<AnimationWidget>
         setState(() {
           widget.forward = !widget.forward;
         });
-        print('onTapDown');
-      },
-      onTapUp: (details) {
-        print('onTapUp');
+        widget.onPressed?.call();
       },
     );
   }

@@ -30,25 +30,14 @@ class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
       title: Text(title),
       leading: Builder(
         builder: (context) {
-          return layout.notifyOpen
-              ? AnimationWidget(
-                  degree: -90,
-                  child: IconButton(
-                    icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
-                    onPressed: () {
-                      handleDrawer(context,
-                          ref.read(layoutStateProvider.notifier).toggleMenu());
-                    },
-                  ))
-              : AnimationWidget(
-                  degree: 90,
-                  child: IconButton(
-                    icon: Icon(layout.menuOpen ? Icons.close : Icons.menu),
-                    onPressed: () {
-                      handleDrawer(context,
-                          ref.read(layoutStateProvider.notifier).toggleMenu());
-                    },
-                  ));
+          return AnimationWidget(
+            degree: layout.menuOpen ? -90 : 90,
+            child: Icon(layout.menuOpen ? Icons.close : Icons.menu),
+            onPressed: () {
+              handleDrawer(
+                  context, ref.read(layoutStateProvider.notifier).toggleMenu());
+            },
+          );
         },
       ),
       actions: [
