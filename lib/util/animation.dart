@@ -7,6 +7,7 @@ typedef PressedCallback = Function(bool pressed);
 class AnimationWidget extends StatefulWidget {
   Widget child = Container();
   int degree = 90;
+  bool forward = true;
 
   AnimationWidget({super.key, required this.child, required this.degree});
 
@@ -28,28 +29,27 @@ class _AnimationWidgetState extends State<AnimationWidget>
 
   @override
   Widget build(BuildContext context) {
-    double end = widget.degree / 360 * 1.0;
     return GestureDetector(
       child: AnimatedBuilder(
           animation: widgetCtrl,
           builder: (context, child) {
+            widget.forward ? widgetCtrl.forward() : widgetCtrl.reverse();
             return RotationTransition(
-              turns: Tween<double>(begin: 0.0, end: end).animate(widgetCtrl),
+              turns: Tween<double>(begin: 0.0, end: widget.degree / 360)
+                  .animate(widgetCtrl),
               alignment: Alignment.center,
               child: widget.child,
             );
           }),
-      onTap: () {
+      onTapDown: (details) {
         setState(() {
-          end = widget.degree / 360;
-          widgetCtrl.forward();
+          widget.forward = !widget.forward;
         });
-        print('onTap');
+        print('onTapDown');
       },
-      // onTapUp: (details) {
-      //   widgetCtrl.reverse();
-      //   print('onTapUp');
-      // },
+      onTapUp: (details) {
+        print('onTapUp');
+      },
     );
   }
 }
