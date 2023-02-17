@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yetoman/state/layout_state.dart';
+import 'package:yetoman/util/animation/util.dart';
 
 import '../model/state.dart';
-import '../util/animation.dart';
+import '../util/animation/model.dart';
+import '../util/animation/rotation.dart';
 
 class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
   final Color backgroundColor = Colors.red;
   final String title;
   final AppBar appBar;
+  final _menuRotationNotifier = rotationNotifier(180);
+  final _notifyRotationNotifier = rotationNotifier(180);
 
-  const LayoutHeader({Key? key, required this.title, required this.appBar})
+  LayoutHeader({Key? key, required this.title, required this.appBar})
       : super(key: key);
 
   void handleDrawer(BuildContext context, LayoutState state) {
@@ -30,25 +34,42 @@ class LayoutHeader extends ConsumerWidget implements PreferredSizeWidget {
       title: Text(title),
       leading: Builder(
         builder: (context) {
-          return AnimationWidget(
-            degree: layout.menuOpen ? -90 : 90,
-            child: Icon(layout.menuOpen ? Icons.close : Icons.menu),
-            onPressed: () {
+          return GestureDetector(
+            onTap: () {
+              _menuRotationNotifier.value = RotationData.fromDegree(
+                  degree: _menuRotationNotifier.value.angle,
+                  clockwise: true,
+                  turns: _menuRotationNotifier.value.turns);
+
+              print('rotation menu ${_menuRotationNotifier.value}');
               handleDrawer(
                   context, ref.read(layoutStateProvider.notifier).toggleMenu());
             },
+            child: MouseRegion(
+              cursor: SystemMouseCursors.click,
+              child: RotateIcon(
+                notifier: _menuRotationNotifier,
+                child: Icon(layout.menuOpen ? Icons.close : Icons.menu),
+              ),
+            ),
           );
         },
       ),
       actions: [
         Builder(
           builder: (context) {
-            return AnimationWidget(
-              degree: layout.notifyOpen ? -90 : 90,
-              child: const Icon(
-                Icons.person,
-                color: Colors.white,
-                size: 30.0,
+            return GestureDetector(
+              onTap: () {
+                print('rotation notify ${_menuRotationNotifier.value}');
+                handleDrawer(context,
+                    ref.read(layoutStateProvider.notifier).toggleNotify());
+              },
+              child: MouseRegion(
+                cursor: SystemMouseCursors.click,
+                child: RotateIcon(
+                  notifier: _notifyRotationNotifier,
+                  child: Icon(layout.menuOpen ? Icons.close : Icons.person),
+                ),
               ),
             );
           },
