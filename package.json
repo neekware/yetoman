@@ -28,7 +28,11 @@
     "test.unit": "vitest components",
     "prepare": "husky install",
     "loc:gen": "yarn ts-node -P ./tools/tsconfig.tools.json ./tools/loc.ts",
-    "prisma:dev": "prisma migrate dev --schema=prisma/schema.prisma"
+    "prisma:dev": "prisma migrate dev --schema=prisma/schema.prisma",
+    "prisma:seed": "prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "devDependencies": {
     "@builder.io/partytown": "^0.7.0",
@@ -40,6 +44,7 @@
     "@mui/material": "5.11.9",
     "@mui/x-data-grid": "5.17.24",
     "@playwright/test": "^1.27.1",
+    "@types/bcrypt": "^5.0.0",
     "@types/commander": "^2.12.2",
     "@types/compression": "^1.7.2",
     "@types/eslint": "8.21.1",
@@ -49,6 +54,7 @@
     "@types/node-fetch": "latest",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
+    "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "5.53.0",
     "@typescript-eslint/parser": "5.53.0",
     "@vanilla-extract/css": "^1.9.3",
@@ -78,6 +84,8 @@
   },
   "dependencies": {
     "@prisma/client": "4.10.1",
-    "dotenv": "^16.0.3"
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
   }
 }
