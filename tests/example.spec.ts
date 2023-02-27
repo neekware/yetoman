@@ -10,5 +10,5 @@ test('homepage has title and links to flower page', async ({ page }) => {
   const anchor = page.locator('a.mindblow');
 
   // Expect an attribute "to be strictly equal" to the value.
-  await expect(anchor).toHaveAttribute('href', '/flower');
+  await expect(anchor).toHaveAttribute('href', '/flower/');
 });

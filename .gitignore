@@ -41,3 +41,7 @@ package-lock.json
 
 # Seekrets
 .env
+
+# Tests
+test-results
+playwright-report
