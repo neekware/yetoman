@@ -2,6 +2,7 @@ import {
   partytownSnippet,
   type PartytownConfig,
 } from "@builder.io/partytown/integration";
+import { Anything } from "~/common/common";
 
 /**
  * Props for `<QwikPartytown/>`, which extends the Partytown Config.
@@ -16,6 +17,6 @@ export interface PartytownProps extends PartytownConfig {}
  * @public
  * You can pass setting with props
  */
-export const QwikPartytown = (props: PartytownProps): any => {
+export const QwikPartytown = (props: PartytownProps): Anything => {
   return <script dangerouslySetInnerHTML={partytownSnippet(props)} />;
 };
