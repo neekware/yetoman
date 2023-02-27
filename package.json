@@ -29,6 +29,8 @@
     "prepare": "husky install",
     "loc:gen": "yarn ts-node -P ./tools/tsconfig.tools.json ./tools/loc.ts",
     "prisma:dev": "prisma migrate dev --schema=prisma/schema.prisma",
+    "prisma:create": "prisma migrate dev --create-only --schema=prisma/schema.prisma",
+    "prisma:apply": "prisma migrate deploy --schema=prisma/schema.prisma",
     "prisma:seed": "prisma db seed"
   },
   "prisma": {
