@@ -6,7 +6,14 @@ const replaceSection = require("markdown-replace-section");
 import { execute } from "./util";
 
 const DEBUG = false;
-const excludeDirs = ["node_modules", "tmp", "coverage", "dist", "server"];
+const excludeDirs = [
+  "node_modules",
+  "tmp",
+  "coverage",
+  "dist",
+  "server",
+  "public",
+];
 const sectionName = "Lines of Code (auto-generated stats)";
 
 /**
