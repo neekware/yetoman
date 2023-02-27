@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "qwik": "qwik",
+    "playwright": "playwright",
     "build": "qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
@@ -21,6 +22,8 @@
     "preview": "qwik build preview && vite preview --open",
     "start": "vite --open --mode ssr",
     "test.e2e": "playwright test",
+    "test.e2e.show": "playwright test --headed",
+    "test.e2e.results": "playwright show-report",
     "test.unit": "vitest components",
     "prepare": "husky install",
     "loc:gen": "yarn ts-node -P ./tools/tsconfig.tools.json ./tools/loc.ts"
