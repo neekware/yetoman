@@ -22,6 +22,7 @@
     "start": "vite --open --mode ssr",
     "test.e2e": "playwright test",
     "test.unit": "vitest components",
+    "prepare": "husky install",
     "loc:gen": "yarn ts-node -P ./tools/tsconfig.tools.json ./tools/loc.ts"
   },
   "devDependencies": {
