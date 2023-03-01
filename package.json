@@ -48,7 +48,6 @@
     "@mui/material": "5.11.9",
     "@mui/x-data-grid": "5.17.24",
     "@playwright/test": "^1.27.1",
-    "@tailwindcss/typography": "^0.5.9",
     "@types/bcrypt": "^5.0.0",
     "@types/commander": "^2.12.2",
     "@types/compression": "^1.7.2",

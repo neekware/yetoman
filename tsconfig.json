@@ -22,5 +22,5 @@
     }
   },
   "files": ["./.eslintrc.cjs"],
-  "include": ["src/**/*.ts", "prisma/**/*.ts", "playwright.config.ts"]
+  "include": ["src", "prisma", "playwright.config.ts"]
 }
