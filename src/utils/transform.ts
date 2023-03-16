@@ -16,10 +16,26 @@ export function htmlDecode(html: string) {
   });
 }
 
-export const stringifyFunction = (fn: Function, execute = false) => {
+export const stringifyFunction = (fn: Function, execute = true) => {
   let toStr = fn.toString();
   if (execute) {
-    toStr = `${toStr} ${fn.name}();`;
+    toStr = `${toStr}\n${fn.name}();`;
   }
   return toStr;
 };
+
+export function combineExecutables(
+  fns: (string | Function)[],
+  execute = true
+): string {
+  const reducer = (acc: string, fn: string | Function) => {
+    if (typeof fn === "function") {
+      return acc + stringifyFunction(fn, execute) + "\n";
+    } else if (typeof fn === "string") {
+      return acc + fn + "\n";
+    }
+    return acc;
+  };
+
+  return fns.reduce(reducer, "");
+}

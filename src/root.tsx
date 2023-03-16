@@ -6,11 +6,11 @@ import {
 } from "@builder.io/qwik-city";
 import { RouterHead } from "./components/router-head/router-head";
 import "./global.css";
+import { setLanguage } from "./utils/language";
 import { setTheme } from "./utils/theme";
-import { htmlDecode, stringifyFunction } from "./utils/transform";
+import { combineExecutables, htmlDecode } from "./utils/transform";
 
-const themeSelector = htmlDecode(stringifyFunction(setTheme, true));
-
+const preOutlet = htmlDecode(combineExecutables([setTheme, setLanguage]));
 /**
  * The root of a QwikCity site always start with the <QwikCityProvider>
  * component, immediately followed by the document's <head> and <body>. Don't
@@ -26,9 +26,9 @@ export default component$(() => {
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
-        <script dangerouslySetInnerHTML={themeSelector} />
       </head>
-      <body lang="en">
+      <body>
+        <script dangerouslySetInnerHTML={preOutlet} />
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
