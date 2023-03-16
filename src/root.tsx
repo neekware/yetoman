@@ -10,7 +10,6 @@ import { setTheme } from "./utils/theme";
 import { htmlDecode, stringifyFunction } from "./utils/transform";
 
 const themeSelector = htmlDecode(stringifyFunction(setTheme, true));
-console.log(themeSelector);
 
 /**
  * The root of a QwikCity site always start with the <QwikCityProvider>

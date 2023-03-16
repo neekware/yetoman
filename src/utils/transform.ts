@@ -21,6 +21,5 @@ export const stringifyFunction = (fn: Function, execute = false) => {
   if (execute) {
     toStr = `${toStr} ${fn.name}();`;
   }
-  console.log(toStr);
   return toStr;
 };
