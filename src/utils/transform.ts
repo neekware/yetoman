@@ -1,13 +1,19 @@
-export function htmlDecode(html: string) {
+/**
+ * Decode HTML entities.
+ *
+ * @param html - HTML string to decode
+ * @returns Decoded string
+ */
+export function decodeHTML(html: string): string {
+  const entities: { [id: string]: string } = {
+    amp: "&",
+    apos: "'",
+    gt: ">",
+    lt: "<",
+    nbsp: "\xa0",
+    quot: '"',
+  };
   return html.replace(/&([a-z]+);/gi, (match: string, entity: string) => {
-    const entities: { [id: string]: string } = {
-      amp: "&",
-      apos: "'",
-      gt: ">",
-      lt: "<",
-      nbsp: "\xa0",
-      quot: '"',
-    };
     entity = entity.toLowerCase();
     if (Object.prototype.hasOwnProperty.call(entities, entity)) {
       return entities[entity];
@@ -16,25 +22,60 @@ export function htmlDecode(html: string) {
   });
 }
 
+/**
+ * Convert a function to a string, and adds execution option.
+ *
+ * @param fn - Function to convert to string
+ * @param execute - Whether to execute the function
+ * @returns String
+ */
 export const stringifyFunction = (fn: Function, execute = true) => {
   let toStr = fn.toString();
   if (execute) {
     toStr = `${toStr}\n${fn.name}();`;
   }
-  return toStr;
+  return `${toStr}\n`;
 };
 
+/**
+ * Encode HTML entities.
+ *
+ * @param html - HTML string to encode
+ * @returns Encoded string
+ */
+export function encodeHTML(html: string) {
+  const entities: { [id: string]: string } = {
+    "&": "&amp;",
+    "'": "&apos;",
+    ">": "&gt;",
+    "<": "&lt;",
+    "\xa0": "&nbsp;",
+    '"': "&quot;",
+  };
+  return html.replace(/[&'"<> \xa0]/g, (match: string) => {
+    return entities[match] || match;
+  });
+}
+
+/**
+ * Combine a list of functions or strings into a single string, optionally
+ * executing them in the order they are passed in.
+ *
+ * @param fns - List of functions or strings
+ * @param execute - Whether to execute the functions
+ * @returns String
+ */
 export function combineExecutables(
   fns: (string | Function)[],
   execute = true
 ): string {
   const reducer = (acc: string, fn: string | Function) => {
     if (typeof fn === "function") {
-      return acc + stringifyFunction(fn, execute) + "\n";
+      return `${acc} ${stringifyFunction(fn, execute)} \n`;
     } else if (typeof fn === "string") {
-      return acc + fn + "\n";
+      return `${acc} ${fn} \n`;
     }
-    return acc;
+    throw new Error("Invalid argument type for combineExecutables");
   };
 
   return fns.reduce(reducer, "");

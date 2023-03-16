@@ -8,9 +8,9 @@ import { RouterHead } from "./components/router-head/router-head";
 import "./global.css";
 import { setLanguage } from "./utils/language";
 import { setTheme } from "./utils/theme";
-import { combineExecutables, htmlDecode } from "./utils/transform";
+import { combineExecutables, decodeHTML } from "./utils/transform";
 
-const preOutlet = htmlDecode(combineExecutables([setTheme, setLanguage]));
+const preOutlet = decodeHTML(combineExecutables([setTheme, setLanguage]));
 /**
  * The root of a QwikCity site always start with the <QwikCityProvider>
  * component, immediately followed by the document's <head> and <body>. Don't
@@ -25,10 +25,10 @@ export default component$(() => {
       <head>
         <meta charSet="utf-8" />
         <link rel="manifest" href="/manifest.json" />
+        <script dangerouslySetInnerHTML={preOutlet} />
         <RouterHead />
       </head>
       <body>
-        <script dangerouslySetInnerHTML={preOutlet} />
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>
