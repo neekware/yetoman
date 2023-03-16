@@ -1,0 +1,21 @@
+{
+  "words": [
+    "apos",
+    "dbml",
+    "flowbite",
+    "lcov",
+    "Neekman",
+    "Neekware",
+    "nocheck",
+    "Partytown",
+    "Qwik",
+    "qwikify",
+    "tailwindcss",
+    "trivago",
+    "undici",
+    "yetoman"
+  ],
+  "enableFiletypes": [
+    "mdx"
+  ]
+}

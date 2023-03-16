@@ -1,8 +1,9 @@
-/** @type {import('tailwindcss').Config} */
+// @type {import('tailwindcss').Config}
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {},
   },
-  plugins: [],
+  darkMode: "class",
+  plugins: [require("flowbite/plugin"), require("prettier-plugin-tailwindcss")],
 };
