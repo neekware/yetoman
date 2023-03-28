@@ -1,4 +1,4 @@
-import { component$ } from "@builder.io/qwik";
+import { combineInlines, component$ } from "@builder.io/qwik";
 import {
   QwikCityProvider,
   RouterOutlet,
@@ -8,9 +8,8 @@ import { RouterHead } from "./components/router-head/router-head";
 import "./global.css";
 import { setLanguage } from "./utils/language";
 import { setTheme } from "./utils/theme";
-import { combineExecutables, decodeHTML } from "./utils/transform";
 
-const preOutlet = decodeHTML(combineExecutables([setTheme, setLanguage]));
+const preOutlet = combineInlines([setTheme, setLanguage]);
 /**
  * The root of a QwikCity site always start with the <QwikCityProvider>
  * component, immediately followed by the document's <head> and <body>. Don't

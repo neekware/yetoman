@@ -23,21 +23,6 @@ export function decodeHTML(html: string): string {
 }
 
 /**
- * Convert a function to a string, and adds execution option.
- *
- * @param fn - Function to convert to string
- * @param execute - Whether to execute the function
- * @returns String
- */
-export const stringifyFunction = (fn: Function, execute = true) => {
-  let toStr = fn.toString();
-  if (execute) {
-    toStr = `${toStr}\n${fn.name}();`;
-  }
-  return `${toStr}\n`;
-};
-
-/**
  * Encode HTML entities.
  *
  * @param html - HTML string to encode
@@ -55,6 +40,59 @@ export function encodeHTML(html: string) {
   return html.replace(/[&'"<> \xa0]/g, (match: string) => {
     return entities[match] || match;
   });
+}
+
+/**
+ * Change the name of a function.
+ *
+ * @param fn - Function to change name
+ * @param newName - New name
+ * @returns Function with new name
+ */
+
+function changeFunctionName(fn: Function, newName: string): Function {
+  const fnString = fn
+    .toString()
+    .replace(/function\s+([^\(]+)/, `function ${newName}`);
+  return new Function(`return ${fnString}`)();
+}
+
+/**
+ * Convert a function to a string, and adds execution option.
+ *
+ * @param fn - Function to convert to string
+ * @param execute - Whether to execute the function
+ * @returns String
+ */
+export const stringifyFunction = (fn: Function, execute = true): string => {
+  let toStr = fn.toString();
+  if (execute) {
+    const functionName = fn.name;
+    toStr = `${toStr}\n${functionName ? functionName + "();" : ""}`;
+  }
+  return `${toStr}\n`;
+};
+
+function functionToString(fn: Function): string {
+  const fnStr = fn.toString();
+  // For arrow functions, fn.toString() already returns the correct format
+  if (fnStr.startsWith("function")) {
+    // Extract the function parameters
+    const params = fnStr
+      .substring(fnStr.indexOf("(") + 1, fnStr.indexOf(")"))
+      .replace(/\s+/g, "");
+
+    // Extract the function body
+    const body = fnStr.substring(
+      fnStr.indexOf("{") + 1,
+      fnStr.lastIndexOf("}")
+    );
+
+    // Construct the final string
+    return `function ${fn.name}(${params}) {\n${body}\n}`;
+  } else {
+    return fnStr;
+  }
 }
 
 /**
