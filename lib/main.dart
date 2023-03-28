@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:yetoman/config/environment.dart';
-import 'package:yetoman/screens/about.dart';
 
 import 'home.dart';
 
@@ -22,12 +21,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
-      initialRoute: HomePage.namedRoute,
-      routes: {
-        HomePage.namedRoute: (context) => const HomePage(),
-        AboutPage.namedRoute: (context) => const AboutPage(),
-      },
+      home: const MyWidget(),
+      // initialRoute: HomePage.namedRoute,
+      // routes: {
+      //   HomePage.namedRoute: (context) => const HomePage(),
+      //   AboutPage.namedRoute: (context) => const AboutPage(),
+      // },
     );
   }
 }

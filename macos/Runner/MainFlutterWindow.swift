@@ -11,5 +11,13 @@ class MainFlutterWindow: NSWindow {
     RegisterGeneratedPlugins(registry: flutterViewController)
 
     super.awakeFromNib()
+     // Make window transparent
+    alphaValue = 0.5
+    isOpaque = false
+    backgroundColor = NSColor.clear
+
+    // Make window clickable through
+    // ignoresMouseEvents = true
+    level = NSWindow.Level.screenSaver
   }
 }
