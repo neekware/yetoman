@@ -1,0 +1,11 @@
+{
+  "cSpell.words": [
+    "Cupertino",
+    "Fullscreen",
+    "riverpod",
+    "Sidenav",
+    "vsync",
+    "Yetoman"
+  ],
+  "cmake.sourceDirectory": "${workspaceFolder}/linux"
+}
