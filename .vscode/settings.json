@@ -6,5 +6,6 @@
     "Sidenav",
     "vsync",
     "Yetoman"
-  ]
+  ],
+  "cmake.sourceDirectory": "${workspaceFolder}/linux"
 }
