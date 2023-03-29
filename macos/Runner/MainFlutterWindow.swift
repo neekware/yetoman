@@ -13,7 +13,7 @@ class MainFlutterWindow: NSWindow {
     super.awakeFromNib()
     // make window fullscreen and remove title bar
     // styleMask.insert(.fullScreen)
-    styleMask.remove(.titled)
+    // styleMask.remove(.titled)
     // // make window always on top
     level = .floating
     // make window transparent

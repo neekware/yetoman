@@ -7,7 +7,6 @@ class AppDelegate: FlutterAppDelegate {
     return true
   }
 
-
   override func applicationDidFinishLaunching(_ aNotification: Notification) {
     createCustomMenu()
   }
